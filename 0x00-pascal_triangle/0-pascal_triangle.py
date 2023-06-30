@@ -3,6 +3,7 @@
 0-pascal_triangle
 """
 
+
 def pascal_triangle(n):
     """
     Represent Pascal Triangle
