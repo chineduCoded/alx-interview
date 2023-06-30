@@ -15,7 +15,7 @@ Space-Optimized Algorithm:
 
 * Within the row, we iterate j from 1 to i-1, representing the columns excluding the first and last columns.
 
-In each iteration, we calculate the value at position (i, j) by summing the corresponding values from the previous row (i-1, j-1) and (i-1, j).
+* In each iteration, we calculate the value at position (i, j) by summing the corresponding values from the previous row (i-1, j-1) and (i-1, j).
 
 * We append the calculated value to current_row.
 
