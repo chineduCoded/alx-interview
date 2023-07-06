@@ -1,29 +1,34 @@
-#!/usr/bin.python3
-"""
-0-lockboxes.py
-"""
+#!/usr/bin/python3
+"""LockBoxes interview challenge"""
 
 
 def canUnlockAll(boxes):
-    '''
-    Determines if all the boxes can be opened or not.
-
-    Args:
-        boxes (list): A list of lists representing the boxes and their corresponding keys.
+    """
+    determines if all the boxes can be opened or not
 
     Returns:
-        bool: True if all boxes can be opened, False otherwise.
-    '''
-
+        True: all boxes can be opened
+        False: not all boxes can be opened
+    """
     length = len(boxes)
-    opened_boxes = set()
-    opened_boxes.add(0)
-    keys = set(boxes[0])
+    keys = set()
+    opened_boxes = []
+    i = 0
 
-    while keys:
-        key = keys.pop()
-        if key < length and key not in opened_boxes:
-            opened_boxes.add(key)
-            keys.update(boxes[key])
+    while i < length:
+        od = i
+        opened_boxes.append(i)
+        keys.update(boxes[i])
+        for key in keys:
+            if key != 0 and key < length and key not in opened_boxes:
+                i = key
+                break
+        if od != i:
+            continue
+        else:
+            break
 
-    return len(opened_boxes) == length
+    for i in range(length):
+        if i not in opened_boxes and i != 0:
+            return False
+    return True
