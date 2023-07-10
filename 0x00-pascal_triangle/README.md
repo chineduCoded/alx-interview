@@ -1,4 +1,4 @@
-# Pascal Triangle
+# 0x01. Pascal Triangle
 
 ## Algorithm used:
 Space-Optimized Algorithm:
