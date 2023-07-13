@@ -4,25 +4,25 @@
 
 def minOperations(n):
     """
-    Calculates the minimum number of operations 
-    needed to obtain exactly n 'H' characters in a text file.
-    
+    Calculate the minimum number of operations to obtain n 'H' characters in the file.
+
     Args:
-        n (int): The target number of 'H' characters.
-    
+        n (int): The desired number of 'H' characters.
+
     Returns:
-        int: The minimum number of operations required. 
-        If it is impossible to achieve n 'H' characters, returns 0.
+        int: The minimum number of operations required.
     """
-    if n == 0:
+    if n <= 1:
         return 0
 
-    dp = [0] * (n + 1)
+    operations = 0
+    factor = 2
 
-    for i in range(2, n + 1):
-        dp[i] = float('inf')
-        for j in range(1, i):
-            if i % j == 0:
-                dp[i] = min(dp[i], dp[j] + i // j)
+    while factor <= n:
+        if n % factor == 0:
+            operations += factor
+            n //= factor
+        else:
+            factor += 1
 
-    return dp[n] if dp[n] != float('inf') else 0
+    return operations
