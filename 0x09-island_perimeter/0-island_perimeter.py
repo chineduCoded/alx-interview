@@ -6,7 +6,19 @@ Island Perimeter
 
 def island_perimeter(grid):
     """
-    Calculate the perimeter of the island described in the given grid.
+    Calculate the perimeter of the island
+
+    Args:
+        grid -> (list[list[int]]): A 2D grid represneting the island
+
+    Returns:
+        int: The Perimeter of the island
+
+    Contraints:
+        - The grid is rectangular with width and height not exceeding 100.
+        - The grid is completely surrounded by water.
+        - There is only one island (or nothing).
+        - The island doesn't have 'lakes' (water inside that isn't connected).
     """
     if not grid:
         return 0
@@ -23,22 +35,35 @@ def island_perimeter(grid):
 
     return perimeter
 
+
 def dfs(row, col, grid, visited):
     """
-     Depth-First Search (DFS) function to calculate
-     the perimeter contribution of a land cell.
-     """
-    if row < 0 or row >= len(grid) or col < 0 or col >= len(grid[0]) or grid[row][col] == 0:
+    Depth-First Search Algorithm to calculate the perimeter
+
+    Args:
+        row (int): Row index of the current cell
+        col (int): Column index of the current cell.
+        grid (List[List[int]]): The 2D grid representing the island
+        visited (List[List[bool]]): Matrix to track visited cells.
+
+    Return:
+        int: Perimeter contribution of the current cell.
+
+    Note:
+        This function is called recursively to explore neighboring cells.
+    """
+    rows, cols = len(grid), len(grid[0])
+    if row < 0 or row >= rows or col < 0 or col >= cols or grid[row][col] == 0:
         return 1
 
     if visited[row][col]:
         return 0
 
     visited[row][col] = True
-    neighbors = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+    neighbours = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     cell_perimeter = 0
 
-    for dr, dc in neighbors:
+    for dr, dc in neighbours:
         cell_perimeter += dfs(row + dr, col + dc, grid, visited)
 
     return cell_perimeter
