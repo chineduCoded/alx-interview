@@ -21,6 +21,7 @@ def sieve_of_eratosthenes(n):
         p += 1
     return [i for i in range(2, n + 1) if is_prime[i]]
 
+
 def calculate_winner(n):
     """
     Determine the winner of a game round based on the count of prime numbers in the range from 2 to 'n'.
@@ -36,6 +37,7 @@ def calculate_winner(n):
         return "Ben"
     else:
         return "Maria"
+
 
 def isWinner(x, nums):
     """
