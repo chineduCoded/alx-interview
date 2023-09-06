@@ -1,44 +1,6 @@
 #!/usr/bin/python3
 
 
-def sieve_of_eratosthenes(n):
-    """
-    Generate a list of prime numbers up to 'n' using the Sieve of Eratosthenes algorithm.
-
-    Args:
-    n (int): The upper limit for prime number generation.
-
-    Returns:
-    list: A list of prime numbers up to 'n'.
-    """
-    is_prime = [True] * (n + 1)
-    is_prime[0] = is_prime[1] = False
-    p = 2
-    while p * p <= n:
-        if is_prime[p]:
-            for i in range(p * p, n + 1, p):
-                is_prime[i] = False
-        p += 1
-    return [i for i in range(2, n + 1) if is_prime[i]]
-
-
-def calculate_winner(n):
-    """
-    Determine the winner of a game round based on the count of prime numbers in the range from 2 to 'n'.
-
-    Args:
-    n (int): The value of 'n' for the game round.
-
-    Returns:
-    str: The name of the winner ('Maria' or 'Ben').
-    """
-    primes = sieve_of_eratosthenes(n)
-    if len(primes) % 2 == 0:
-        return "Ben"
-    else:
-        return "Maria"
-
-
 def isWinner(x, nums):
     """
     Determine the winner of multiple game rounds.
@@ -60,3 +22,41 @@ def isWinner(x, nums):
         return "Ben"
     else:
         return None
+
+
+def calculate_winner(n):
+    """
+    Determine the winner of a game round based on the count of prime numbers in the range from 2 to 'n'.
+
+    Args:
+    n (int): The value of 'n' for the game round.
+
+    Returns:
+    str: The name of the winner ('Maria' or 'Ben').
+    """
+    primes = sieve_of_eratosthenes(n)
+    if len(primes) % 2 == 0:
+        return "Ben"
+    else:
+        return "Maria"
+        
+        
+def sieve_of_eratosthenes(n):
+    """
+    Generate a list of prime numbers up to 'n' using the Sieve of Eratosthenes algorithm.
+
+    Args:
+    n (int): The upper limit for prime number generation.
+
+    Returns:
+    list: A list of prime numbers up to 'n'.
+    """
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    p = 2
+    while p * p <= n:
+        if is_prime[p]:
+            for i in range(p * p, n + 1, p):
+                is_prime[i] = False
+        p += 1
+    return [i for i in range(2, n + 1) if is_prime[i]]
